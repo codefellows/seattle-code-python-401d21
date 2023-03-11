@@ -1,3 +1,0 @@
-Enter r to roll or q to quit
-> q
-OK, bye
