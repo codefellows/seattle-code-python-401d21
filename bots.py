@@ -134,12 +134,71 @@ class NervousNellie(BaseBot):
 
     def _roll_bank_or_quit(self):
         return "b"
+class MiddlingMargaret(BaseBot):
+    """MiddlingMargaret has a moderate playing style"""
+
+    def _roll_bank_or_quit(self):
+
+        if self.unbanked_points >= 500 or self.dice_remaining < 3:
+            return "b"
+
+        return "r"
+
+
+class DaringDarla(BaseBot):
+    """DaringDarla rolls whenever more than 1 dice remaining """
+
+    def _roll_bank_or_quit(self):
+        if self.dice_remaining == 1:
+            return "b"
+
+        return "r"
+
+
+class YoniBot(BaseBot):
+    def _roll_bank_or_quit(self):
+        if self.unbanked_points >= 550 or self.dice_remaining < 2:
+            return "b"
+        if self.unbanked_points >= 450 and self.dice_remaining <= 3:
+            return "b"
+        elif self.unbanked_points >= 350 and self.dice_remaining == 2:
+            return "b"
+        if self.unbanked_points + self.total_score >= 10000:
+            return "b"
+        return "r"
+
+
+class EvilBrendan(BaseBot):
+    """VERY aggressive playstyle : all or nothing baby"""
+
+    def _roll_bank_or_quit(self):
+        if self.dice_remaining >= 3:
+            return "r"
+        if self.unbanked_points >= 800 or self.dice_remaining < 3:
+            return "b"
+        if self.unbanked_points > 350:
+            if self.dice_remaining >= 3:
+                return "r"
+            else:
+                return "b"
+        if self.unbanked_points <= 400:
+            return "r"
 
 
 class YourBot(BaseBot):
     def _roll_bank_or_quit(self):
-        """your logic here"""
-        return "b"
+        """Our playstyle is based on EvilBrendan with some alterations"""
+        if self.dice_remaining >= 5:
+            return 'r'
+        if self.unbanked_points >= 600 or self.dice_remaining < 3:
+            return "b"
+        if self.unbanked_points > 200:
+            if self.dice_remaining >= 4:
+                return 'r'
+            else:
+                return 'b'
+        if self.unbanked_points < 200:
+            return 'r'
 
     def _enter_dice(self):
         """simulate user entering which dice to keep.
@@ -149,6 +208,11 @@ class YourBot(BaseBot):
 
 
 if __name__ == "__main__":
-    num_games = 100
+    num_games = 1000
     # NervousNellie.play(num_games)
+    # MiddlingMargaret.play(num_games)
+    # DaringDarla.play(num_games)
     YourBot.play(num_games)
+    # MarkBot.play(num_games)
+    # EvilIncarnateBot.play(num_games)
+    # EvilBrendan.play(num_games)

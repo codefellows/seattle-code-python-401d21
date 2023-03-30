@@ -4,11 +4,11 @@
 As we were unable to complete all feature tasks from yesterday's lab, this is the solution code and bot file forked and pulled from the class repo per Roger. We did not write any of the game logic, game code, game state, tests, ect. The only file we modified is the bots.py to build our gameplay bot.
 ## Feature Tasks and Requirements:
 - Create an AI Bot to play Ten Thousand
-The only method available for use from Game class is play.
-All static methods of GameLogic class are available.
-All other interactions with game can take place ONLY via the I/O features of the game.
-In other words, via injectable print and input functionality.
-It is FORBIDDEN to inject a custom roller function into Game class.
+- The only method available for use from Game class is play.
+- All static methods of GameLogic class are available.
+- All other interactions with game can take place ONLY via the I/O features of the game.
+- In other words, via injectable print and input functionality.
+- It is FORBIDDEN to inject a custom roller function into Game class.
 
 Author: Tyler Huntley & Dutch Foy (We only modified `bots.py` file `class YourBot`.)
 Links and Resources
