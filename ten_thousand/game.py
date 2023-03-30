@@ -1,5 +1,6 @@
 from ten_thousand.game_logic import GameLogic
 
+# game_of_ten_thousand_solution_code/class-09/ten_thousand/ten_thousand/game_logic.py
 dice_roller = GameLogic.roll_dice
 
 

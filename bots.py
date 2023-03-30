@@ -2,11 +2,11 @@
 at same level as pyproject.toml
 """
 
-from abc import ABC, abstractmethod
+from ten_thousand.game import play
+from ten_thousand.game_logic import GameLogic
 import builtins
 import re
-from ten_thousand.game import Game
-from ten_thousand.game_logic import GameLogic
+from abc import ABC, abstractmethod
 
 
 class BaseBot(ABC):
@@ -113,9 +113,9 @@ class BaseBot(ABC):
 
         for _ in range(num_games):
             player = cls()
-            game = Game()
+            # game = Game()
             try:
-                game.play()
+                play()
             except SystemExit:
                 # in game system exit is fine
                 # because that's how they quit.
@@ -150,5 +150,5 @@ class YourBot(BaseBot):
 
 if __name__ == "__main__":
     num_games = 100
-    NervousNellie.play(num_games)
+    # NervousNellie.play(num_games)
     YourBot.play(num_games)
