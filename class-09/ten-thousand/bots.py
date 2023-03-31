@@ -164,11 +164,21 @@ class EvilBrendan(BaseBot):
         if self.unbanked_points <= 400:
             return "r"
 
+class TheBestBot(BaseBot): #sheldon and mike
 
-class YourBot(BaseBot):
+    start_dict = {
+        1: 200,
+        2: 150,
+        3: 400,
+        4: 750,
+        5: 2300,
+        6: 4850
+    }
+
     def _roll_bank_or_quit(self):
-        """your logic here"""
-        return "b"
+        if self.unbanked_points <= TheBestBot.start_dict[self.dice_remaining]:
+            return 'r'
+        return 'b'
 
     def _enter_dice(self):
         """simulate user entering which dice to keep.
@@ -177,12 +187,89 @@ class YourBot(BaseBot):
         return super()._enter_dice()
 
 
+class Not_too_shabby(BaseBot):
+    def _roll_bank_or_quit(self):
+        """Our playstyle is heavily based on EvilBrendan with some conditional alterations"""
+        if self.dice_remaining >= 4:
+            return 'r'
+        if self.unbanked_points >= 600 or self.dice_remaining < 3:
+            return "b"
+        if self.unbanked_points > 200:
+            if self.dice_remaining >= 4:
+                return 'r'
+            else:
+                return 'b'
+        if self.unbanked_points < 200:
+            return 'r'
+
+    def _enter_dice(self):
+        """simulate user entering which dice to keep.
+        Defaults to all scoring dice"""
+
+        return super()._enter_dice()
+
+
+class JamesAndTreBot(BaseBot):
+    def _roll_bank_or_quit(self):
+        if self.unbanked_points >= 500:
+            return 'b'
+        elif self.unbanked_points >= 350:
+            return 'r'
+        elif self.dice_remaining == 0:
+            return 'b'
+        elif GameLogic.get_scorers(self.last_roll):
+            return 'r'
+        else:
+            return 'q'
+
+
+class RollingThunder(BaseBot): # Ethan Domique
+    def _roll_bank_or_quit(self):
+        if self.dice_remaining > 3 or self.unbanked_points < 300:
+            return 'r'
+        return "b"
+
+
+
+
+class YourBot(BaseBot):
+
+    def _roll_bank_or_quit(self):
+        if self.unbanked_points >= 800 or self.dice_remaining < 2:
+            return "b"
+        if self.unbanked_points >= 300 and self.dice_remaining <= 3:
+            return "b"
+        elif self.unbanked_points >= 200 and self.dice_remaining == 2:
+            return "b"
+        if self.unbanked_points + self.total_score >= 10000:
+            return "b"
+        return "r"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 if __name__ == "__main__":
-    num_games = 1000
+    num_games = 10000
     # NervousNellie.play(num_games)
     # MiddlingMargaret.play(num_games)
     # DaringDarla.play(num_games)
-    # YourBot.play(num_games)
-    # MarkBot.play(num_games)
-    # EvilIncarnateBot.play(num_games)
-    EvilBrendan.play(num_games)
+    # TheBestBot.play(num_games) # 10617
+    # Not_too_shabby.play(num_games) # 10453
+    # JamesAndTreBot.play(num_games) #8622
+    # RollingThunder.play(num_games) #10538
+    # YourBot.play(num_games) # 9937
+

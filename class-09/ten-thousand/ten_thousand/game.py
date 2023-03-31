@@ -16,11 +16,8 @@ def play(roller=GameLogic.roll_dice, num_rounds=20):
 
     """
     global dice_roller
-
     dice_roller = roller
-
     choice = invite_to_play()
-
     if choice == "y":
         start_game(num_rounds)
     else:
@@ -56,14 +53,10 @@ def start_game(num_rounds):
         round_result = do_round(round_num)
         if round_result == -1:
             break
-
         print(f"You banked {round_result} points in round {round_num}")
-
         total_points += round_result
-
         print(f"Total score is {total_points} points")
         round_num += 1
-
     print(f"Thanks for playing. You earned {total_points} points")
 
 
@@ -78,37 +71,25 @@ def do_round(round_num):
         -1 has special meaning for "quit"
     """
     print(f"Starting round {round_num}")
-
     num_dice = 6
     unbanked_points = 0
-
     # loop here until a quit, bank or zilch
     while True:
         roll = do_roll(num_dice)
-
         if GameLogic.calculate_score(roll) == 0:
             zilch()
             return 0
-
         keepers = confirm_keepers(roll)
-
         # TODO: I don't like these varying ways to handle a quit
         if len(keepers) == 0:
             return -1
-
         unbanked_points += GameLogic.calculate_score(keepers)
-
         num_dice -= len(keepers)
-
         if num_dice == 0:  # hot dice
             num_dice = 6  # reset to six
-
         print(f"You have {unbanked_points} unbanked points and {num_dice} dice remaining")
-
         print("(r)oll again, (b)ank your points or (q)uit:")
-
         roll_bank_or_quit = input("> ")
-
         if roll_bank_or_quit == "q":
             return -1
         elif roll_bank_or_quit == "b":
