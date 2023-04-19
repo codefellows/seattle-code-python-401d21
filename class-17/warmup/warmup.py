@@ -12,7 +12,7 @@ def get_age_range(tree):
     def walk(root, youngest=0, oldest=0):
 
         if not root:
-            return
+            return 0
         if root.value.age < youngest: # May need to come back to 0
             youngest = root.value.age
         elif root.value.age > oldest:
@@ -36,9 +36,6 @@ def get_age_range(tree):
         # 21    34   34   34
         #
     # check if the current root value < or > youngest and oldets
-
-
-
 
   return age_range
 
