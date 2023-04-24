@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="text-3xl text-green-700">Home Page Django + Tailwind CSS</h1>
+  {% for thing in things %}
+    <h2 class="text-red-700">Name: {{ thing.title }}</h2>
+    <p>Description: {{ thing.description }}</p>
+  {% endfor %}
+{% endblock content %}
