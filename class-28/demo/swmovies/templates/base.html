@@ -1,8 +1,14 @@
+{% load compress %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <title>Movies</title>
+  {% compress css %}
+    <link rel="stylesheet" href="{% static 'src/output.css' %}">
+  {% endcompress %}
 </head>
 <body>
   {% block content %}

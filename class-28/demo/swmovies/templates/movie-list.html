@@ -5,9 +5,10 @@
 <h1>Movies</h1>
 <a href="{% url 'create_view' %}">+ New Movie</a>
 <ul>
+    <h1 class="text3l text-green-700">Movies List</h1>
     {% for movie in object_list %}
       <li>
-          <a href="{% url 'detail_view' movie.pk %}">{{ movie.name }}</a>
+          <a class="text-red-400" href="{% url 'detail_view' movie.pk %}">{{ movie.name }}</a>
       </li>
   {% endfor %}
 </ul>
