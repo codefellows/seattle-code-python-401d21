@@ -23,9 +23,6 @@ export function AuthProvider(props) {
     });
 
     async function login(username, password) {
-        console.log(username, password);
-        console.log(username);
-        // const response = await axios.post(tokenUrl, { username, password });
 
         const options = {
             method: "POST",
@@ -36,7 +33,6 @@ export function AuthProvider(props) {
         const response = await fetch(tokenUrl, options);
 
         const data = await response.json();
-        console.log('info', data);
 
         const decodedAccess = jwt.decode(data.access);
 
